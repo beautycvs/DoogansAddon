@@ -1,6 +1,6 @@
 {
-  "id": "example_addon",
-  "name": "Example Addon",
+  "id": "doogan_Addon",
+  "name": "Dungeon Addon",
   "version": "1.0.0",
   "entrypoints": [
     "com.example.ExampleAddon"
