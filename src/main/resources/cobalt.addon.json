@@ -1,11 +1,11 @@
 {
-  "id": "doogan_Addon",
+  "id": "dungeon_Addon",
   "name": "Dungeon Addon",
   "version": "1.0.0",
   "entrypoints": [
-    "com.example.ExampleAddon"
+    "com.dungeon.DungeonAddon"
   ],
   "mixins": [
-    "exampleaddon.mixins.json"
+    "dungeonaddon.mixins.json"
   ]
 }

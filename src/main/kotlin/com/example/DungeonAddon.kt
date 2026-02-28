@@ -6,19 +6,19 @@ import org.cobalt.api.addon.Addon
 import org.cobalt.api.command.CommandManager
 import org.cobalt.api.module.Module
 
-object ExampleAddon : Addon() {
+object DungeonAddon : Addon() {
 
   override fun onLoad() {
     CommandManager.register(ExampleCommand)
-    println("ExampleAddon loaded!")
+    println("DungeonAddon loaded!")
   }
 
   override fun onUnload() {
-    println("ExampleAddon unloaded!")
+    println("DungeonAddon unloaded!")
   }
 
   override fun getModules(): List<Module> {
-    return listOf(ExampleModule)
+    return listOf(LC Etherwarp)
   }
 
 }
