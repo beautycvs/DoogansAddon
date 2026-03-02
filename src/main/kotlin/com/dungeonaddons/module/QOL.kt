@@ -1,5 +1,6 @@
 package com.dungeonaddons.module
 
+import com.dungeonaddons.util.dungeons.isInDungeon
 import net.minecraft.client.Minecraft
 import com.dungeonaddons.util.helper.Clock
 import org.cobalt.api.event.annotation.SubscribeEvent
@@ -25,12 +26,13 @@ object QOL : Module(
 
   @SubscribeEvent
   fun leftEtherwarp(event: MouseEvent) {
+    if (!clock.passed()) return
     var currentSlot = mc.player?.inventory?.selectedSlot
     var etherwarpSlot = InventoryUtils.findItemInInventoryWithLore("Etherwarp")
     if (!leftclickEtherwarp && currentSlot == etherwarpSlot) return
 
     if (event is MouseEvent.LeftClick) {
-      // IDK if I should cancel it or not you decide
+      // cobalt event cancel doesnt work make your own idc
       event.setCancelled(true)
       clock.schedule(50)
       MouseUtils.rightClick()
@@ -41,15 +43,17 @@ object QOL : Module(
     description = "shows the dungeon map",
     defaultValue = false
   )
+  @SubscribeEvent
   fun onMapRender(event: NVGRenderer) {
-    if (!dungeonMap) return
-    var width = mc.getWindow().getWidth().toFloat()
-    var height = mc.getWindow().getHeight().toFloat()
-    NVGRenderer.beginFrame(width, height)
-    // render map here
+    var width = mc.window.width.toFloat()
+    var height = mc.window.height.toFloat()
+    if (isInDungeon().isInDungeon() && !dungeonMap) {
+      NVGRenderer.beginFrame(width, height)
+      // render map here
 
 
-    NVGRenderer.endFrame()
+      NVGRenderer.endFrame()
+    }
   }
 
 }
