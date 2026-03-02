@@ -8,6 +8,7 @@ import org.cobalt.api.module.setting.impl.CheckboxSetting
 import org.cobalt.api.util.InventoryUtils
 import org.cobalt.api.event.impl.client.MouseEvent
 import org.cobalt.api.util.MouseUtils
+import org.cobalt.api.util.ui.NVGRenderer
 
 
 object QOL : Module(
@@ -35,4 +36,20 @@ object QOL : Module(
       MouseUtils.rightClick()
     }
   }
+  var dungeonMap by CheckboxSetting(
+    name = "dungeon map",
+    description = "shows the dungeon map",
+    defaultValue = false
+  )
+  fun onMapRender(event: NVGRenderer) {
+    if (!dungeonMap) return
+    var width = mc.getWindow().getWidth().toFloat()
+    var height = mc.getWindow().getHeight().toFloat()
+    NVGRenderer.beginFrame(width, height)
+    // render map here
+
+
+    NVGRenderer.endFrame()
+  }
+
 }
