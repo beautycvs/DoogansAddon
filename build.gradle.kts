@@ -33,7 +33,7 @@ dependencies {
   modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin_version")}")
   modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
 
-  modImplementation("com.github.CobaltScripts:Cobalt:945a71ff93")
+  modImplementation("com.github.CobaltScripts:Cobalt:1.0.1.ffb6fbe")
   modImplementation("meteordevelopment:discord-ipc:1.1")
   modImplementation("org.reflections:reflections:0.10.2")
   modImplementation("org.lwjgl:lwjgl-nanovg:${lwjglVersion}")
@@ -42,7 +42,7 @@ dependencies {
     modImplementation("org.lwjgl:lwjgl-nanovg:${lwjglVersion}:natives-$it")
   }
 
-  modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.1")
+  modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.2")
   runtimeOnly("org.apache.httpcomponents:httpclient:4.5.14")
 }
 

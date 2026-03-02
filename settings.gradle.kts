@@ -15,4 +15,4 @@ pluginManagement {
   }
 }
 
-rootProject.name = "ExampleAddon"
+rootProject.name = "DungeonAddon"

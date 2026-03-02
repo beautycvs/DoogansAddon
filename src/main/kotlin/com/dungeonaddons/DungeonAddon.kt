@@ -1,15 +1,13 @@
-package com.example
+package com.dungeonaddons
 
-import com.example.command.ExampleCommand
-import com.example.module.ExampleModule
+
+import com.dungeonaddons.module.QOL
 import org.cobalt.api.addon.Addon
-import org.cobalt.api.command.CommandManager
 import org.cobalt.api.module.Module
 
 object DungeonAddon : Addon() {
 
   override fun onLoad() {
-    CommandManager.register(ExampleCommand)
     println("DungeonAddon loaded!")
   }
 
@@ -18,7 +16,7 @@ object DungeonAddon : Addon() {
   }
 
   override fun getModules(): List<Module> {
-    return listOf(LC Etherwarp)
+    return listOf(QOL)
   }
 
 }
