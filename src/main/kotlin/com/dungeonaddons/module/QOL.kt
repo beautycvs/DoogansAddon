@@ -21,15 +21,17 @@ object QOL : Module(
     description = "left click etherwarp(does not crouch for you)",
     defaultValue = false
   )
+
   @SubscribeEvent
   fun leftEtherwarp(event: MouseEvent) {
     var currentSlot = mc.player?.inventory?.selectedSlot
     var etherwarpSlot = InventoryUtils.findItemInInventoryWithLore("Etherwarp")
     if (!leftclickEtherwarp && currentSlot == etherwarpSlot) return
 
-    if (MouseEvent.PRESS == 0) {
-      // idk if i should cancel it or not you decide
-      clock.schedule(150)
+    if (event is MouseEvent.LeftClick) {
+      // IDK if I should cancel it or not you decide
+      event.setCancelled(true)
+      clock.schedule(50)
       MouseUtils.rightClick()
     }
   }
