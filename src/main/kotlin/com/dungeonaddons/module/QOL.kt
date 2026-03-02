@@ -1,6 +1,7 @@
 package com.dungeonaddons.module
 
 import net.minecraft.client.Minecraft
+import com.dungeonaddons.util.helper.Clock
 import org.cobalt.api.event.annotation.SubscribeEvent
 import org.cobalt.api.module.Module
 import org.cobalt.api.module.setting.impl.CheckboxSetting
@@ -13,19 +14,22 @@ object QOL : Module(
   name = "QOL",
 ) {
   var mc = Minecraft.getInstance()
+  private val clock = Clock()
+
   var leftclickEtherwarp by CheckboxSetting(
     name ="left click etherwarp",
     description = "left click etherwarp(does not crouch for you)",
     defaultValue = false
   )
   @SubscribeEvent
-  fun leftEtherwarp(){
+  fun leftEtherwarp(event: MouseEvent) {
     var currentSlot = mc.player?.inventory?.selectedSlot
     var etherwarpSlot = InventoryUtils.findItemInInventoryWithLore("Etherwarp")
     if (!leftclickEtherwarp && currentSlot == etherwarpSlot) return
 
     if (MouseEvent.PRESS == 0) {
       // idk if i should cancel it or not you decide
+      clock.schedule(150)
       MouseUtils.rightClick()
     }
   }
