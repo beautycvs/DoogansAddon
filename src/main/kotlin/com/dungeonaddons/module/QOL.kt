@@ -1,5 +1,6 @@
 package com.dungeonaddons.module
 
+import com.dungeonaddons.mixins.MouseHandlerMixin
 import com.dungeonaddons.util.dungeons.isInDungeon
 import net.minecraft.client.Minecraft
 import com.dungeonaddons.util.helper.Clock
@@ -26,18 +27,19 @@ object QOL : Module(
 
   @SubscribeEvent
   fun leftEtherwarp(event: MouseEvent) {
+    if (!leftclickEtherwarp) return
     if (!clock.passed()) return
+
     var currentSlot = mc.player?.inventory?.selectedSlot
     var etherwarpSlot = InventoryUtils.findItemInInventoryWithLore("Etherwarp")
-    if (!leftclickEtherwarp && currentSlot == etherwarpSlot) return
 
-    if (event is MouseEvent.LeftClick) {
-      // cobalt event cancel doesnt work make your own idc
+    if (event is MouseEvent.LeftClick && currentSlot == etherwarpSlot) {
       event.setCancelled(true)
       clock.schedule(50)
       MouseUtils.rightClick()
     }
   }
+
   var dungeonMap by CheckboxSetting(
     name = "dungeon map",
     description = "shows the dungeon map",
