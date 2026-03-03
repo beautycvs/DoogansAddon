@@ -1,6 +1,6 @@
 package com.dungeonaddons.module
 
-import com.dungeonaddons.mixins.MouseHandlerMixin
+import com.dungeonaddons.event.MouseEventHandler
 import com.dungeonaddons.util.dungeons.isInDungeon
 import net.minecraft.client.Minecraft
 import com.dungeonaddons.util.helper.Clock
@@ -16,8 +16,11 @@ import org.cobalt.api.util.ui.NVGRenderer
 object QOL : Module(
   name = "QOL",
 ) {
+
   var mc = Minecraft.getInstance()
   private val clock = Clock()
+  var currentSlot: Int? = mc.player?.inventory?.selectedSlot
+  var etherwarpSlot: Int = InventoryUtils.findItemInInventoryWithLore("Etherwarp")
 
   var leftclickEtherwarp by CheckboxSetting(
     name ="left click etherwarp",
@@ -29,13 +32,9 @@ object QOL : Module(
   fun leftEtherwarp(event: MouseEvent) {
     if (!leftclickEtherwarp) return
     if (!clock.passed()) return
-
-    var currentSlot = mc.player?.inventory?.selectedSlot
-    var etherwarpSlot = InventoryUtils.findItemInInventoryWithLore("Etherwarp")
-
-    if (event is MouseEvent.LeftClick && currentSlot == etherwarpSlot) {
-      event.setCancelled(true)
-      clock.schedule(50)
+    var playerCrouched = mc.player?.isCrouching
+    if (currentSlot == etherwarpSlot && playerCrouched == true) {
+      MouseEventHandler.setCancelLeftClick(true)
       MouseUtils.rightClick()
     }
   }

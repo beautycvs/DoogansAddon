@@ -3,7 +3,7 @@
   "name": "Dungeon Addon",
   "version": "1.0.0",
   "entrypoints": [
-    "com.dungeon.DungeonAddon"
+    "com.dungeonaddons.DungeonAddon"
   ],
   "mixins": [
     "dungeonaddon.mixins.json"

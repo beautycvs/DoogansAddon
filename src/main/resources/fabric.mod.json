@@ -20,12 +20,12 @@
     "cobalt": [
       {
         "adapter": "kotlin",
-        "value": "com.example.ExampleAddon"
+        "value": "com.dungeonaddons.DungeonAddon"
       }
     ]
   },
   "mixins": [
-    "exampleaddon.mixins.json"
+    "dungeonaddon.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
