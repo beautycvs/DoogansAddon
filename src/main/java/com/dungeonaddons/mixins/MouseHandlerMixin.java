@@ -2,6 +2,7 @@ package com.dungeonaddons.mixins;
 
 import net.minecraft.client.MouseHandler;
 import net.minecraft.client.input.MouseButtonInfo;
+import com.dungeonaddons.mixins.MixinMouseHandlerAccessor;
 import org.cobalt.api.event.impl.client.MouseEvent;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +18,8 @@ public class MouseHandlerMixin {
     if (buttonInfo.input() == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
       if (MouseEventHandler.shouldCancelLeftClick()) {
         ci.cancel();
+        MixinMouseHandlerAccessor accessor = (MixinMouseHandlerAccessor) (Object) this;
+        accessor.invokeOnMouseButton(window, buttonInfo, action);
       }
     }
   }
