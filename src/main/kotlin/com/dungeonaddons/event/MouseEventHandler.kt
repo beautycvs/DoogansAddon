@@ -18,8 +18,8 @@ object MouseEventHandler {
   fun shouldCancelRightClick(): Boolean = shouldCancelRightClick
 
   fun reset() {
-        shouldCancelLeftClick = false
-        shouldCancelRightClick = false
-  }
+      shouldCancelLeftClick = false
+      shouldCancelRightClick = false
+ }
 }
 
